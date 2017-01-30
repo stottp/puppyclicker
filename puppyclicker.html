@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Puppy Clicker</title>
+		<style>
+		</style>
+    </head>
+    <body>
+		<ul id="puppy-list"></ul>
+		<div id="puppydiv">
+			<h2 id="puppy-name"></h2>
+			<div id="puppy-count"></div>
+			<img id="puppy-img" src="" alt="puppy picture"></img>
+		</div>
+		<!--Add Pro Details -->
+		<div id="admin-button"><button type="button" id="admin-btn">Admin</button><div>
+		<div id="admin-area">
+			<form id="admin-form">
+				<legend>Admin Area</legend>
+				<label for="puppy-name">
+					<span>Name</span>
+					<input id="puppy-name-text" type="text">
+				</label>
+				<label for="ImgURL">
+					<span>Image</span>
+					<input id="imgURL" type="url">
+				</label>
+				<label for="clicks">
+					<span>Clicks</span>
+					<input id="clicks" type="number">
+				</label>
+				<button type="button" id="save" value="Submit">Save</button>
+				<button type="reset" id="cancel" value="Reset">Cancel</button>
+			</form>
+		</div>
+		<script src="main.js"></script>
+    </body>
+    <footer>
+        <div class="Footer">
+           <!-- <b>Copyright - 2017</b> -->
+        </div>
+    </footer>
+</html>
