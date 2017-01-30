@@ -70,9 +70,8 @@ var octopus = {
 		return model.adminView;
 	},
 	
-	//set puppies from form
-	setCurrentPuppy: function(aname) {
-		console.log(aname);
+	getAdminForm: function() {
+		return 
 	},
 	
 	//Toggle admin area
@@ -99,12 +98,10 @@ var puppyView = {
 		this.puppyImageElem = document.getElementById('puppy-img');
 		this.countElem = document.getElementById('puppy-count');
 		
-		this.adminBtnElem = document.getElementById('admin-btn');
-		this.adminElem = document.getElementById('admin-area');
-		
 		//on click increment puppy counter
 		this.puppyImageElem.addEventListener('click', function(e) {
 			octopus.incrementCounter();
+			adminView.render();
 		});
 		
 		//render the update
@@ -152,6 +149,7 @@ var puppyListView = {
                 return function() {
                     octopus.setCurrentPuppy(puppy);
                     puppyView.render();
+					adminView.render();
                 };
             })(puppy));
 
@@ -170,9 +168,9 @@ var puppyListView = {
 			this.adminElem = document.getElementById('admin-area');
 			this.adminBtnSaveElem = document.getElementById('save');
 			this.adminBtnCancelElem = document.getElementById('cancel');
-			this.puppyName = document.getElementById('puppy-name');
 			this.imgURL = document.getElementById('imgURL');
 			this.clicks = document.getElementById('clicks');
+			this.puppyNames = document.getElementById('puppy-names-text');
 			
 			//on click toggle the form
 			this.adminBtnElem.addEventListener('click', function(e) {
@@ -186,8 +184,9 @@ var puppyListView = {
 			
 			//save the form
 			this.adminBtnSaveElem.addEventListener('click', function(e) {
-				console.log(puppytest);
-			})
+				octopus.getAdminForm();
+				console.log(this.clicks.value);
+				})
 			
 			//render
 			this.render();
@@ -195,14 +194,14 @@ var puppyListView = {
 		
 		render: function() {
 			var getCurrentAdmin = octopus.getCurrentAdmin();
-			this.puppyNameVal = document.getElementById('puppy-name-text').value;
-			console.log(puppyNameVal);
-			
-			
 			if (getCurrentAdmin === false) {
-				this.adminElem.style.visibility = 'hidden';
+				this.adminElem.style.display = 'none';
 			} else { (getCurrentAdmin === true) 
-				this.adminElem.style.visibility = 'visible';
+				this.adminElem.style.display = 'block';
+				var currentPuppy = octopus.getCurrentPuppy();
+				this.clicks.value = currentPuppy.clickCount;
+				this.puppyNames.value = currentPuppy.name;
+				this.imgURL.value = currentPuppy.imgSrc;
 			}
 		}
 };
